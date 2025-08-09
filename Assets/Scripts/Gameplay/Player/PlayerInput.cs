@@ -1,18 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using Zenject;
 
-public class PlayerInput : MonoBehaviour
+public class PlayerInput
 {
-    // Start is called before the first frame update
-    void Start()
+    private InputService _inputService;
+
+    [Inject]
+    public void Construct(InputService inputService)
     {
-        
+        _inputService = inputService;
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool LeftPunch()
     {
-        
+        return _inputService.InputActions.Player.LeftPunch.triggered;
+    }
+
+    public bool RightPunch()
+    {
+        return _inputService.InputActions.Player.RightPunch.triggered;
     }
 }

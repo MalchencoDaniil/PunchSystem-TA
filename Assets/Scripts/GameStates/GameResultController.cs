@@ -12,6 +12,7 @@ public class GameResultController : Game
     private void Awake()
     {
         _sceneService = FindObjectOfType<SceneService>();
+        _blackScreen = FindObjectOfType<BlackScreen>();
     }
 
     public override void Won()
@@ -23,7 +24,7 @@ public class GameResultController : Game
     {
         await UniTask.Delay(TimeSpan.FromSeconds(timeToWait));
 
-        _blackScreen.CloseBlackScreen();
+        _blackScreen.OpenBlackScreen();
 
         await UniTask.Delay(TimeSpan.FromSeconds(_blackScreen.Duration));
 

@@ -38,7 +38,7 @@ public class HealthUI : MonoBehaviour
 
     public void CanvasUpateHealth()
     {
-        _healthText.text = _healthSystem.CurrentHealth.ToString();
+        _healthText.text = _healthSystem.CurrentHealth.ToString() + "%";
         _healthSlider.value = _healthSystem.CurrentHealth;
     }
 }

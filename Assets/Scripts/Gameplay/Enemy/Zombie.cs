@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(VisualHit))]
 public class Zombie : Enemy, IHit
@@ -7,12 +8,21 @@ public class Zombie : Enemy, IHit
     private VisualHit _visualHit;
 
     [Header("Particles")]
-    [SerializeField] private ParticleSystem _hitParticle;
-    [SerializeField] private ParticleSystem _deathParticle;
+    [SerializeField] private Transform _hitParticle;
+    [SerializeField] private Transform _deathParticle;
+
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip _explosionSound;
+    [SerializeField] private AudioSource _enemyAudioSourcePrefab;
+
+    private void Start()
+    {
+        _visualHit = GetComponent<VisualHit>();
+    }
 
     public override void Death()
     {
-        _enemyAnimator.SetTrigger("Death");
+        EnemyAnimator.SetTrigger("Death");
         DeathAsyncVoid().Forget();
     }
 
@@ -20,24 +30,24 @@ public class Zombie : Enemy, IHit
     {
         await UniTask.WaitForSeconds(1);
 
-        SpawnExplosion(transform.position, _deathParticle);
+        AudioSource _newAudioSource = Instantiate(_enemyAudioSourcePrefab);
+        _newAudioSource.PlayOneShot(_explosionSound);
+
+        Transform _newExplosion = Instantiate(_deathParticle, transform.position, Quaternion.identity);
+        Destroy(_newExplosion.gameObject, 0.5f);
+
         Destroy(gameObject);
     }
 
     public void TakeHit(float _damage, Vector3 _hitPosition)
     {
-        _enemyAnimator.SetFloat("HitID", Random.Range(0, 3));
-        _enemyAnimator.SetTrigger("Hit");
+        EnemyAnimator.SetFloat("HitID", Random.Range(0, 3));
+        EnemyAnimator.SetTrigger("Hit");
 
         _visualHit.Hit();
-        _healthSystem.TakeDamage(_damage);
+        HealthSystem.TakeDamage(_damage);
 
-        SpawnExplosion(_hitPosition, _hitParticle);
-    }
-
-    private void SpawnExplosion(Vector3 _position, ParticleSystem _explosion)
-    {
-        ParticleSystem _newExplosion = Instantiate(_explosion, _position, Quaternion.identity);
-        Destroy(_newExplosion, _newExplosion.duration);
+        Transform _newExplosion = Instantiate(_hitParticle, _hitPosition, Quaternion.identity);
+        Destroy(_newExplosion.gameObject, 0.5f);
     }
 }
