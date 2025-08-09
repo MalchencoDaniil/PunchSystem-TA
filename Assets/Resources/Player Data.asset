@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77552a558a67ab140ae1ff269da72d31, type: 3}
   m_Name: Player Data
   m_EditorClassIdentifier: 
-  Damage: 25
+  Damage: 10
   AttackSpeed: 10
-  AttackReloadTime: 0.7
+  AttackReloadTime: 0.5
