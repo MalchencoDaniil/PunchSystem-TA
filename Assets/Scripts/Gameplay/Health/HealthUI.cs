@@ -16,6 +16,9 @@ public class HealthUI : MonoBehaviour
 
     private void Start()
     {
+        if (_healthSystem == null)
+            return;
+
         _healthSlider = GetComponent<Slider>();
 
         _healthText.text = _healthSystem.CurrentHealth.ToString();
