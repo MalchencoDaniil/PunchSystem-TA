@@ -61,6 +61,7 @@ public class PlayerAttack : MonoBehaviour
             }
             else if (_playerInput.RightPunch())
             {
+                _rightArm.Hit(transform.position);
                 DoSwing();
             }
         }
