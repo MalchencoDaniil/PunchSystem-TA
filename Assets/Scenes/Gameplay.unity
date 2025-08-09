@@ -481,6 +481,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 565a1fc7079ffe546a62108aacb529fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _blackScreen: {fileID: 1952597660}
   _closeTime: 2
 --- !u!4 &794964002
 Transform:
@@ -1702,6 +1703,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 32487743}
     m_Modifications:
+    - target: {fileID: 3152095468907358290, guid: aa5cc1968cb063b408aea9b29504c900, type: 3}
+      propertyPath: _cursorState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7145374953753305363, guid: aa5cc1968cb063b408aea9b29504c900, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -5,14 +5,13 @@ using UnityEngine;
 public class GameResultController : Game
 {
     private SceneService _sceneService;
-    private BlackScreen _blackScreen;
+    [SerializeField] private BlackScreen _blackScreen;
 
     [SerializeField] private float _closeTime = 2;
 
     private void Awake()
     {
         _sceneService = FindObjectOfType<SceneService>();
-        _blackScreen = FindObjectOfType<BlackScreen>();
     }
 
     public override void Won()

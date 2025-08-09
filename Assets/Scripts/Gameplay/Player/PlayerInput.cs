@@ -1,3 +1,4 @@
+using UnityEngine;
 using Zenject;
 
 public class PlayerInput
@@ -8,6 +9,7 @@ public class PlayerInput
     public void Construct(InputService inputService)
     {
         _inputService = inputService;
+        Debug.Log("PlayerInput " + _inputService);
     }
 
     public bool LeftPunch()

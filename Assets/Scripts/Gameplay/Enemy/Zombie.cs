@@ -30,6 +30,10 @@ public class Zombie : Enemy, IHit
     {
         await UniTask.WaitForSeconds(1);
 
+        Debug.Log("_enemyAudioSourcePrefab: " + _enemyAudioSourcePrefab);
+        Debug.Log("_explosionSound: " + _explosionSound);
+        Debug.Log("_deathParticle: " + _deathParticle);
+
         AudioSource _newAudioSource = Instantiate(_enemyAudioSourcePrefab);
         _newAudioSource.PlayOneShot(_explosionSound);
 

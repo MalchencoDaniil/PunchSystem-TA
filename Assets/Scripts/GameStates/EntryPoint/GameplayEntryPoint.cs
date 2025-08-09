@@ -34,6 +34,8 @@ public class GameplayEntryPoint : MonoBehaviour
 
     private void Awake()
     {
+        _blackScreen = FindObjectOfType<BlackScreen>();
+
         PlayerBind();
         EnemyBind();
 
@@ -45,8 +47,12 @@ public class GameplayEntryPoint : MonoBehaviour
         _gameController = FindObjectOfType<GameResultController>();
         _enemyInstance.HealthSystem.OnDeath.AddListener(_gameController.Won);
 
-        _blackScreen = FindObjectOfType<BlackScreen>();
         _blackScreen.CloseBlackScreen();
+    }
+
+    private void OnDestroy()
+    {
+        _enemyInstance.HealthSystem.OnDeath.RemoveListener(_gameController.Won);
     }
 
     private void CameraInit()

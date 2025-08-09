@@ -7,6 +7,6 @@ public class GlobalInstaller : MonoInstaller
 
     public override void InstallBindings()
     {
-        Container.Bind<InputService>().FromComponentInNewPrefab(_inputServicePrefab).AsSingle().NonLazy();
+        Container.Bind<InputService>().FromComponentInNewPrefab(_inputServicePrefab).AsSingle();
     }
 }

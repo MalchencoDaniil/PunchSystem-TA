@@ -21,6 +21,7 @@ public class PlayerAttack : MonoBehaviour
     public void Construct(PlayerInput playerInput)
     {
         _playerInput = playerInput;
+        Debug.Log("PlayerAttack " + _playerInput);
     }
 
     private void Awake()
@@ -44,11 +45,13 @@ public class PlayerAttack : MonoBehaviour
             if (_playerInput.LeftPunch())
             {
                 _leftArm.Hit(hitPoint);
+                Debug.Log("Punch");
                 DoPunch(hitPoint);
             }
             else if (_playerInput.RightPunch())
             {
                 _rightArm.Hit(hitPoint);
+                Debug.Log("Punch");
                 DoPunch(hitPoint);
             }
         }
